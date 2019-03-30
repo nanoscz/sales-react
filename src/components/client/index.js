@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
 import { Query } from 'react-apollo'
+import { Link } from 'react-router-dom'
+
 import CLIENT_QUERY from '../../queries'
 
-import { ListGroup, Button } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 const contact = () => (
   <Query query={CLIENT_QUERY}>
     {({ loading, error, data }) => {
@@ -17,7 +19,7 @@ const contact = () => (
                 <div className="row justify-content-between align-items-center">
                   <div className="col-md-8">{item.name} {item.lastName} - {item.company}</div>
                   <div className="col-md-4 d-flex justify-content-end">
-                    <Button variant="outline-primary">Edit</Button>
+                    <Link to={`/client/edit/${item.id}`} className="btn btn-outline-primary">Edit</Link>
                   </div>
                 </div>
               </ListGroup.Item>
