@@ -1,28 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react'
+import { ApolloProvider } from 'react-apollo'
+import ApolloClient from 'apollo-boost'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+//components
+import Header from './components/header'
+import Clients from './components/client'
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  onError: ({ networkError, graphQlError }) => {
+    console.error('networkError', networkError)
+    console.error('graphQlError', graphQlError)
+  }
+})
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <ApolloProvider client={client}>
+        <Router>
+          <Fragment>
+            <Header />
+            <div className="container mt-4">
+              <Switch>
+                <Route exact path="/" component={Clients}></Route>
+              </Switch>
+            </div>
+          </Fragment>
+        </Router>
+      </ApolloProvider>
     );
   }
 }
 
-export default App;
+export default App
