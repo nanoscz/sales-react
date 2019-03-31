@@ -6,8 +6,8 @@ import CLIENT_QUERY from '../../queries'
 
 import { ListGroup } from 'react-bootstrap';
 const contact = () => (
-  <Query query={CLIENT_QUERY}>
-    {({ loading, error, data }) => {
+  <Query query={CLIENT_QUERY} pollInterval={1000}>
+    {({ loading, error, data, startPolling, stopPolling }) => {
       if (loading) return 'loading...'
       if (error) return `Error: ${error.message}`
       return (

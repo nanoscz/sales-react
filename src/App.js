@@ -24,7 +24,7 @@ class App extends Component {
       <ApolloProvider client={client}>
         <Router>
           <Fragment>
-            <Header />
+            <Header/>
             <div className="container mt-4">
               <Switch>
                 <Route exact path="/" component={Clients}></Route>
