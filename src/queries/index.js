@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-const CLIENT_QUERY = gql `query {
+const CLIENTS_QUERY = gql `query {
   getClients{
     id
     name
@@ -10,4 +10,4 @@ const CLIENT_QUERY = gql `query {
   }
 }`
 
-export default CLIENT_QUERY
+export default CLIENTS_QUERY
