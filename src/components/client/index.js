@@ -19,6 +19,12 @@ const contact = () => (
                 <div className="row justify-content-between align-items-center">
                   <div className="col-md-8">{item.name} {item.lastName} - {item.company}</div>
                   <div className="col-md-4 d-flex justify-content-end">
+                    <button  className="btn btn-outline-danger mr-2"
+                      onClick={ () => {
+                        console.log(item.id)
+                      }}> 
+                    Delete 
+                    </button>
                     <Link to={`/client/edit/${item.id}`} className="btn btn-outline-primary">Edit</Link>
                   </div>
                 </div>
