@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 
-import NEW_CLIENT from '../../mutations'
+import { NEW_CLIENT } from '../../mutations'
 class newClient extends Component {
   state = {
     client: {
@@ -18,8 +18,8 @@ class newClient extends Component {
   readField = i => event => {
     const temporalEmail = this.state.emails.map((email, index) => {
       if (i !== index) return email
-      console.log({email})
-      console.log({...email})
+      console.log({ email })
+      console.log({ ...email })
       return {
         ...email,
         email: event.target.value
@@ -27,40 +27,40 @@ class newClient extends Component {
     })
 
     this.setState({
-      emails : temporalEmail
+      emails: temporalEmail
     })
 
     console.log(this.state.emails)
-  } 
+  }
 
   newField = () => {
     this.setState({
-      emails: this.state.emails.concat([{email: ''}])
+      emails: this.state.emails.concat([{ email: '' }])
     })
   }
 
   deleteField = i => () => {
     this.setState({
-      emails: this.state.emails.filter((email, index) =>  i !== index)
+      emails: this.state.emails.filter((email, index) => i !== index)
     })
   }
   render() {
-    const {error} = this.state
-    let response = (error) ? <p className="alert alert-danger p-3 text-center"> 
-        All fields are required.</p> : ''
+    const { error } = this.state
+    let response = (error) ? <p className="alert alert-danger p-3 text-center">
+      All fields are required.</p> : ''
     return (
       <Fragment>
         <h2 className="text-center"> New client</h2>
         {response}
         <div className="row justify-content-center">
-          <Mutation mutation={NEW_CLIENT} onCompleted={()=> this.props.history.push('/')}>
+          <Mutation mutation={NEW_CLIENT} onCompleted={() => this.props.history.push('/')}>
             {addClient => (
               <form className="col-md-8 m-3"
                 onSubmit={e => {
                   e.preventDefault()
                   const { name, lastName, age, company, type } = this.state.client
-                  if (name === '' || lastName === '' || age === '' || 
-                      company === '' || type === '') {
+                  if (name === '' || lastName === '' || age === '' ||
+                    company === '' || type === '') {
                     this.setState({
                       error: true
                     })
@@ -70,7 +70,7 @@ class newClient extends Component {
                   this.setState({
                     error: false
                   })
-                  const {emails} = this.state
+                  const { emails } = this.state
                   const input = {
                     name,
                     lastName,
@@ -79,12 +79,11 @@ class newClient extends Component {
                     company,
                     type
                   }
-                  console.log({input})
+                  console.log({ input })
                   addClient({
                     variables: { input }
                   })
-                }}
-              >
+                }}>
                 <div className="form-row">
                   <div className="form-group col-md-6">
                     <label>Name</label>
@@ -128,26 +127,26 @@ class newClient extends Component {
                   </div>
                   {this.state.emails.map((input, index) => (
                     <div key={index} className="form-group col-md-12">
-                      <label> Email { index + 1}</label>
+                      <label> Email {index + 1}</label>
                       <div className="input-group">
                         <input
-                          onChange={ this.readField(index)} 
-                          type="email" placeholder="Email" className="form-control"/>
+                          onChange={this.readField(index)}
+                          type="email" placeholder="Email" className="form-control" />
                         <div className="input-group-append">
                           <button
-                            onClick={ this.deleteField(index)}
+                            onClick={this.deleteField(index)}
                             type="button" className="btn btn-danger">
-                           &times; Delete
+                            &times; Delete
                           </button>
                         </div>
                       </div>
                     </div>
                   ))}
                   <div className="form-group d-flex justify-content-center col-md-12">
-                      <button onClick={this.newField}
+                    <button onClick={this.newField}
                       type="button"
                       className="btn btn-warning">
-                        + Add Email
+                      + Add Email
                       </button>
                   </div>
                 </div>

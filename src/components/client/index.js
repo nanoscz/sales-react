@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Query } from 'react-apollo'
 import { Link } from 'react-router-dom'
 
-import CLIENTS_QUERY from '../../queries'
+import { CLIENTS_QUERY } from '../../queries'
 
 import { ListGroup } from 'react-bootstrap';
 const contact = () => (
