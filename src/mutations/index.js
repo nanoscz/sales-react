@@ -10,4 +10,14 @@ const NEW_CLIENT = gql`
     }
 }`
 
-export default NEW_CLIENT
+
+const UPDATE_CLIENT = gql`
+  mutation updateClient($input: ClientInput){
+    updateClient(input: $input){
+      name,
+      lastName
+    }
+}`
+
+
+export { NEW_CLIENT, UPDATE_CLIENT }

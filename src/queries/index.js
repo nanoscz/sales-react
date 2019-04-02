@@ -10,4 +10,20 @@ const CLIENTS_QUERY = gql `query {
   }
 }`
 
-export default CLIENTS_QUERY
+const CLIENT_QUERY = gql `
+  query getClientByID($id: ID){
+    getClientByID(id: $id){
+      id
+      name
+      lastName
+      age
+      emails {
+        email
+      }
+      company
+      type
+    }
+  }
+`
+
+export {CLIENTS_QUERY, CLIENT_QUERY}
